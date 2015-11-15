@@ -4,9 +4,10 @@
   "description": "Challenge project for free code camp Wikipedia API",
   "main": "server.js",
   "scripts": {
-    "launch": "webpack && nodemon --exec babel-node server.js",
+    "launch": "webpack && nodemon --delay 1 -L --exec babel-node server.js",
     "start": "babel-node server.js",
-    "build": "webpack -w"
+    "build": "webpack -w",
+    "wds": "webpack-dev-server --progress --colors"
   },
   "keywords": [
     "react",

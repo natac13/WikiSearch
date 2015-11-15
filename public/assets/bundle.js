@@ -24428,18 +24428,20 @@
 	
 	var _Input2 = _interopRequireDefault(_Input);
 	
-	var _wikiHelper = __webpack_require__(212);
+	var _DisplayResults = __webpack_require__(212);
+	
+	var _DisplayResults2 = _interopRequireDefault(_DisplayResults);
+	
+	var _wikiHelper = __webpack_require__(213);
 	
 	var _wikiHelper2 = _interopRequireDefault(_wikiHelper);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	/*** components ***/
-	
 	var Search = (0, _react.createClass)({
 	    getInitialState: function getInitialState() {
 	        return {
-	            results: {},
+	            results: [],
 	            input: ''
 	        };
 	    },
@@ -24454,10 +24456,21 @@
 	        (0, _wikiHelper2.default)(input).then(function (_ref) {
 	            var results = _ref.results;
 	
-	            _this.setState({
-	                results: results
-	            });
-	            console.log('state results ' + JSON.stringify(_this.state.results, null, 4));
+	            console.log('results from search.js: ' + JSON.stringify(results, null, 4));
+	
+	            /*** there is an error property on the results object if there is no search param
+	            in the query for the URL ***/
+	            if (!results.error) {
+	                _this.setState({
+	                    results: results.query.search
+	                });
+	            } else {
+	                // clears the list when then user 'backspaces' the search
+	                _this.setState({
+	                    results: []
+	                });
+	            }
+	            // console.log(`state results ${JSON.stringify(this.state.results, null, 4)}`);
 	        });
 	    },
 	    render: function render() {
@@ -24468,13 +24481,17 @@
 	            _react2.default.createElement(
 	                'p',
 	                null,
+	                'Input : ',
 	                this.state.input
-	            )
+	            ),
+	            _react2.default.createElement(_DisplayResults2.default, { results: this.state.results })
 	        );
 	    }
 	});
 	
 	/*** Data ***/
+	
+	/*** components ***/
 	
 	exports.default = Search;
 
@@ -24535,13 +24552,58 @@
 /* 212 */
 /***/ function(module, exports, __webpack_require__) {
 
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var DisplayResults = (0, _react.createClass)({
+	    createMarkup: function createMarkup(x) {
+	        return { __html: x };
+	    },
+	    render: function render() {
+	        var _this = this;
+	
+	        var resultsList = this.props.results.map(function (result, index) {
+	            return _react2.default.createElement(
+	                "li",
+	                { className: "list-group-item", key: index },
+	                _react2.default.createElement(
+	                    "h3",
+	                    null,
+	                    result.title
+	                ),
+	                _react2.default.createElement("p", { dangerouslySetInnerHTML: _this.createMarkup(result.snippet) })
+	            );
+	        });
+	        return _react2.default.createElement(
+	            "ul",
+	            { className: "list-group" },
+	            resultsList
+	        );
+	    }
+	});
+	
+	exports.default = DisplayResults;
+
+/***/ },
+/* 213 */
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 	
-	var _jsonpP = __webpack_require__(213);
+	var _jsonpP = __webpack_require__(214);
 	
 	var _jsonpP2 = _interopRequireDefault(_jsonpP);
 	
@@ -24549,7 +24611,9 @@
 	
 	var getResultsWiki = function getResultsWiki(input) {
 	    return (0, _jsonpP2.default)('https://en.wikipedia.org/w/api.php?action=query&list=search&format=json&srlimit=13&srwhat=text&srinfo=suggestion&srsearch=' + input + '&callback=JSON_CALLBACK').then(function handleSuccess(response) {
-	        return { results: response };
+	        if (response) {
+	            return { results: response };
+	        }
 	    }).catch(function handleError(error) {
 	        console.log(error);
 	    });
@@ -24558,16 +24622,16 @@
 	exports.default = getResultsWiki;
 
 /***/ },
-/* 213 */
+/* 214 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	module.exports = __webpack_require__(214);
+	module.exports = __webpack_require__(215);
 
 
 /***/ },
-/* 214 */
+/* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -24585,7 +24649,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _jsonp = __webpack_require__(215);
+	var _jsonp = __webpack_require__(216);
 	
 	var _jsonp2 = _interopRequireDefault(_jsonp);
 	
@@ -24613,14 +24677,14 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 215 */
+/* 216 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Module dependencies
 	 */
 	
-	var debug = __webpack_require__(216)('jsonp');
+	var debug = __webpack_require__(217)('jsonp');
 	
 	/**
 	 * Module exports.
@@ -24716,7 +24780,7 @@
 
 
 /***/ },
-/* 216 */
+/* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -24726,7 +24790,7 @@
 	 * Expose `debug()` as the module.
 	 */
 	
-	exports = module.exports = __webpack_require__(217);
+	exports = module.exports = __webpack_require__(218);
 	exports.log = log;
 	exports.formatArgs = formatArgs;
 	exports.save = save;
@@ -24897,7 +24961,7 @@
 
 
 /***/ },
-/* 217 */
+/* 218 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -24913,7 +24977,7 @@
 	exports.disable = disable;
 	exports.enable = enable;
 	exports.enabled = enabled;
-	exports.humanize = __webpack_require__(218);
+	exports.humanize = __webpack_require__(219);
 	
 	/**
 	 * The currently active debug mode names, and names to skip.
@@ -25100,7 +25164,7 @@
 
 
 /***/ },
-/* 218 */
+/* 219 */
 /***/ function(module, exports) {
 
 	/**

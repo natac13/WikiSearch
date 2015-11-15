@@ -1,7 +1,8 @@
 import React, { createClass } from 'react';
 
 /*** components ***/
-import Input from './Wiki/Input';
+import Input          from './Wiki/Input';
+import DisplayResults from './Wiki/DisplayResults';
 
 /*** Data ***/
 import getResultsWiki from '../utils/wikiHelper';
@@ -9,7 +10,7 @@ import getResultsWiki from '../utils/wikiHelper';
 const Search = createClass({
     getInitialState() {
         return {
-            results: {},
+            results: [],
             input: ''
         };
     },
@@ -22,11 +23,22 @@ const Search = createClass({
 
         getResultsWiki(input)
             .then(({ results }) => {
+                console.log(`results from search.js: ${JSON.stringify(results, null, 4)}`);
 
-                this.setState({
-                    results: results
-                });
-                console.log(`state results ${JSON.stringify(this.state.results, null, 4)}`);
+                /*** there is an error property on the results object if there is no search param
+                in the query for the URL ***/
+                if(!results.error) {
+                    this.setState({
+                        results: results.query.search
+                    });
+                }
+                else{
+                    // clears the list when then user 'backspaces' the search
+                    this.setState({
+                        results: []
+                    });
+                }
+                // console.log(`state results ${JSON.stringify(this.state.results, null, 4)}`);
             });
 
     },
@@ -35,7 +47,8 @@ const Search = createClass({
         return (
             <div>
                 <Input handleInput={this.handleInput}/>
-                <p>{this.state.input}</p>
+                <p>Input : {this.state.input}</p>
+                <DisplayResults results={this.state.results} />
             </div>
         );
     }
