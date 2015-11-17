@@ -1,0 +1,10 @@
+header{
+    text-align: center;
+    h1{
+        @include adjust-font-size-to(64px);
+        @include trailer(0.5, 32px);
+        @include leader(1, 32px);
+
+    }
+
+}

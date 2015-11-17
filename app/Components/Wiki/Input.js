@@ -14,14 +14,16 @@ const Input = createClass({
 
     render() {
         return (
-            <div className="row">
-                <form className="form-inline" role="form">
+            <div className="row search-wrapper">
+                <form className="form-inline" role="form"
+                    onSubmit={this.getInputnSearch}>
                     <div className="form-group">
                         <label for="search">Search</label>
                         <input type="text" className="form-control"
-                            id="search" ref="search" placeholder="Wiki..."
-                            onChange={this.getInputnSearch}/>
+                            id="search" ref="search" placeholder="Wiki..." />
                     </div>
+                    <button type="submit" className="btn btn-primary"
+                        value="submit" >Search</button>
                 </form>
             </div>
         );

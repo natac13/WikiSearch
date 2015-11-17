@@ -5,6 +5,7 @@ import notify     from 'gulp-notify';
 import sourcemaps from 'gulp-sourcemaps';
 import rename     from 'gulp-rename';
 import del        from 'del';
+import livereload from 'gulp-livereload';
 
 // import CSS dependencies
 import minifyCSS   from 'gulp-minify-css';
@@ -42,11 +43,15 @@ gulp.task('css', function() {
         }))
         .pipe(sourcemaps.write('./'))
         .pipe(notify({message: 'Generated file: <%= file.relative %>'}))
-        .pipe(gulp.dest(paths.assets));
+        .pipe(gulp.dest(paths.assets))
+        .pipe(livereload());
 });
 
 gulp.task('watch', function() {
+    livereload.listen();
     gulp.watch(paths.allscss, ['css']);
+    // thought this would refresh the page with nodemon
+    // gulp.watch(paths.assets, ['css']);
 });
 
 gulp.task('default', ['clean','css', 'watch']);

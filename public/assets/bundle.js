@@ -24525,10 +24525,11 @@
 	    render: function render() {
 	        return _react2.default.createElement(
 	            "div",
-	            { className: "row" },
+	            { className: "row search-wrapper" },
 	            _react2.default.createElement(
 	                "form",
-	                { className: "form-inline", role: "form" },
+	                { className: "form-inline", role: "form",
+	                    onSubmit: this.getInputnSearch },
 	                _react2.default.createElement(
 	                    "div",
 	                    { className: "form-group" },
@@ -24538,8 +24539,13 @@
 	                        "Search"
 	                    ),
 	                    _react2.default.createElement("input", { type: "text", className: "form-control",
-	                        id: "search", ref: "search", placeholder: "Wiki...",
-	                        onChange: this.getInputnSearch })
+	                        id: "search", ref: "search", placeholder: "Wiki..." })
+	                ),
+	                _react2.default.createElement(
+	                    "button",
+	                    { type: "submit", className: "btn btn-primary",
+	                        value: "submit" },
+	                    "Search"
 	                )
 	            )
 	        );
@@ -24552,7 +24558,7 @@
 /* 212 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -24568,24 +24574,41 @@
 	    createMarkup: function createMarkup(x) {
 	        return { __html: x };
 	    },
+	    generateURL: function generateURL(search) {
+	        return 'https://en.wikipedia.org/wiki/' + search.split(' ').join('%20');
+	    },
 	    render: function render() {
 	        var _this = this;
 	
 	        var resultsList = this.props.results.map(function (result, index) {
+	            // let regex = /(?:<\/?span>?)\s?(?:class="searchmatch">)?/g;
+	            // let cleaned = result.snippet.replace(regex, '');
+	            // console.log(cleaned);
+	            var url = _this.generateURL(result.title);
 	            return _react2.default.createElement(
-	                "li",
-	                { className: "list-group-item", key: index },
+	                'li',
+	                { className: 'list-group-item', key: index },
 	                _react2.default.createElement(
-	                    "h3",
+	                    'h3',
 	                    null,
-	                    result.title
+	                    _react2.default.createElement(
+	                        'a',
+	                        { href: url, target: '_blank' },
+	                        result.title
+	                    )
 	                ),
-	                _react2.default.createElement("p", { dangerouslySetInnerHTML: _this.createMarkup(result.snippet) })
+	                _react2.default.createElement('p', { dangerouslySetInnerHTML: _this.createMarkup(result.snippet) }),
+	                _react2.default.createElement(
+	                    'p',
+	                    null,
+	                    'Number of words: ',
+	                    result.wordcount
+	                )
 	            );
 	        });
 	        return _react2.default.createElement(
-	            "ul",
-	            { className: "list-group" },
+	            'ul',
+	            { className: 'list-group' },
 	            resultsList
 	        );
 	    }

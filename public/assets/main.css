@@ -1,0 +1,21 @@
+html {
+  font-size: 100%;
+  line-height: 1.75em;
+}
+
+.search-wrapper {
+  font-size: 1.5em;
+  line-height: 1.16667em;
+  text-align: center;
+  margin-top: 7em;
+}
+
+header {
+  text-align: center;
+}
+header h1 {
+  font-size: 4em;
+  line-height: 1.3125em;
+  margin-bottom: 0.4375em;
+  margin-top: 0.875em;
+}
