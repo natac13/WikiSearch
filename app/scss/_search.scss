@@ -1,6 +1,26 @@
+#app {
+    background: #333;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+
 .search-wrapper {
     @include adjust-font-size-to(24px);
     text-align: center;
     margin-top: 7em;
+    perspective: 1000px;
 
+    .swing {
+        transform: rotateX(45deg);
+        transition: transform .8s ease;
+
+        &:focus {
+            transform: rotateX(0deg);
+        }
+
+    }
 }
+

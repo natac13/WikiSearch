@@ -24428,11 +24428,11 @@
 	
 	var _Input2 = _interopRequireDefault(_Input);
 	
-	var _DisplayResults = __webpack_require__(212);
+	var _DisplayResults = __webpack_require__(214);
 	
 	var _DisplayResults2 = _interopRequireDefault(_DisplayResults);
 	
-	var _wikiHelper = __webpack_require__(213);
+	var _wikiHelper = __webpack_require__(215);
 	
 	var _wikiHelper2 = _interopRequireDefault(_wikiHelper);
 	
@@ -24538,7 +24538,7 @@
 	                        { "for": "search" },
 	                        "Search"
 	                    ),
-	                    _react2.default.createElement("input", { type: "text", className: "form-control",
+	                    _react2.default.createElement("input", { type: "text", className: "form-control swing",
 	                        id: "search", ref: "search", placeholder: "Wiki..." })
 	                ),
 	                _react2.default.createElement(
@@ -24555,7 +24555,9 @@
 	exports.default = Input;
 
 /***/ },
-/* 212 */
+/* 212 */,
+/* 213 */,
+/* 214 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24617,7 +24619,7 @@
 	exports.default = DisplayResults;
 
 /***/ },
-/* 213 */
+/* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24626,7 +24628,7 @@
 	    value: true
 	});
 	
-	var _jsonpP = __webpack_require__(214);
+	var _jsonpP = __webpack_require__(216);
 	
 	var _jsonpP2 = _interopRequireDefault(_jsonpP);
 	
@@ -24645,16 +24647,16 @@
 	exports.default = getResultsWiki;
 
 /***/ },
-/* 214 */
+/* 216 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	module.exports = __webpack_require__(215);
+	module.exports = __webpack_require__(217);
 
 
 /***/ },
-/* 215 */
+/* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -24672,7 +24674,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	var _jsonp = __webpack_require__(216);
+	var _jsonp = __webpack_require__(218);
 	
 	var _jsonp2 = _interopRequireDefault(_jsonp);
 	
@@ -24700,14 +24702,14 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 216 */
+/* 218 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Module dependencies
 	 */
 	
-	var debug = __webpack_require__(217)('jsonp');
+	var debug = __webpack_require__(219)('jsonp');
 	
 	/**
 	 * Module exports.
@@ -24803,7 +24805,7 @@
 
 
 /***/ },
-/* 217 */
+/* 219 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -24813,7 +24815,7 @@
 	 * Expose `debug()` as the module.
 	 */
 	
-	exports = module.exports = __webpack_require__(218);
+	exports = module.exports = __webpack_require__(220);
 	exports.log = log;
 	exports.formatArgs = formatArgs;
 	exports.save = save;
@@ -24984,7 +24986,7 @@
 
 
 /***/ },
-/* 218 */
+/* 220 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -25000,7 +25002,7 @@
 	exports.disable = disable;
 	exports.enable = enable;
 	exports.enabled = enabled;
-	exports.humanize = __webpack_require__(219);
+	exports.humanize = __webpack_require__(221);
 	
 	/**
 	 * The currently active debug mode names, and names to skip.
@@ -25187,7 +25189,7 @@
 
 
 /***/ },
-/* 219 */
+/* 221 */
 /***/ function(module, exports) {
 
 	/**

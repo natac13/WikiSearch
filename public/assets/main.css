@@ -3,11 +3,37 @@ html {
   line-height: 1.75em;
 }
 
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+#app {
+  background: #333;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
 .search-wrapper {
   font-size: 1.5em;
   line-height: 1.16667em;
   text-align: center;
   margin-top: 7em;
+  -webkit-perspective: 1000px;
+          perspective: 1000px;
+}
+.search-wrapper .swing {
+  -webkit-transform: rotateX(45deg);
+          transform: rotateX(45deg);
+  transition: -webkit-transform .8s ease;
+  transition: transform .8s ease;
+  transition: transform .8s ease, -webkit-transform .8s ease;
+}
+.search-wrapper .swing:focus {
+  -webkit-transform: rotateX(0deg);
+          transform: rotateX(0deg);
 }
 
 header {
@@ -18,4 +44,5 @@ header h1 {
   line-height: 1.3125em;
   margin-bottom: 0.4375em;
   margin-top: 0.875em;
+  color: white;
 }

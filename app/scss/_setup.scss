@@ -3,3 +3,7 @@
 $base-font-size: 16px;
 $base-line-height: 28px;
 @include establish-baseline;
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}

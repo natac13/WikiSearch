@@ -1,5 +1,6 @@
 import React, { createClass } from 'react';
 
+
 const Input = createClass({
     propTypes: {
         handleInput: React.PropTypes.func.isRequired
@@ -19,7 +20,7 @@ const Input = createClass({
                     onSubmit={this.getInputnSearch}>
                     <div className="form-group">
                         <label for="search">Search</label>
-                        <input type="text" className="form-control"
+                        <input type="text" className="form-control swing"
                             id="search" ref="search" placeholder="Wiki..." />
                     </div>
                     <button type="submit" className="btn btn-primary"
