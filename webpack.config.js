@@ -5,7 +5,12 @@ var path = require('path');
 var buildPath = path.join(__dirname, 'public', 'assets');
 
 module.exports = {
-    entry: './app/App.js',
+    entry: [
+        // sets up an ES6-ish environment
+        'babel-polyfill',
+        // the main application script
+        './app/App.js'
+    ],
     output: {
         path: buildPath,
         filename: 'bundle.js',
@@ -27,10 +32,12 @@ module.exports = {
         loaders: [
             {
                 test: /\.jsx?$/,
+                include: [path.resolve(__dirname, 'app')],
                 exclude: /(node_modules|bower_components)/,
                 loader: 'babel',
                 query: {
                     cacheDirectory: true,
+                    plugins: ['transform-runtime'],
                     presets: ['es2015', 'react']
                 }
             }

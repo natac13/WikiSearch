@@ -19,12 +19,11 @@ const Input = createClass({
                 <form className="form-inline" role="form"
                     onSubmit={this.getInputnSearch}>
                     <div className="form-group">
-                        <label for="search">Search</label>
                         <input type="text" className="form-control swing"
                             id="search" ref="search" placeholder="Wiki..." />
                     </div>
-                    <button type="submit" className="btn btn-primary"
-                        value="submit" >Search</button>
+                    {/*<button type="submit" className="btn btn-primary"
+                        value="submit" >Search</button>*/}
                 </form>
             </div>
         );

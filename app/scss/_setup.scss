@@ -4,6 +4,16 @@ $base-font-size: 16px;
 $base-line-height: 28px;
 @include establish-baseline;
 
+$text-glow: #7AFF99;
+$primary-text: #2C663A;
+$secondary-text: #4793BC;
+
 body {
     font-family: 'Montserrat', sans-serif;
+    background: #333;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
 }

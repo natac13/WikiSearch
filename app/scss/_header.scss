@@ -4,8 +4,26 @@ header{
         @include adjust-font-size-to(64px);
         @include trailer(0.5, 32px);
         @include leader(1, 32px);
-        color: white;
+        color: $primary-text;
+        text-shadow: 0 0 13px $text-glow;
+        transition: all 0.9s ease-in-out;
 
+        &:hover {
+            color: scale-lightness($primary-text, 15%);
+            text-shadow: 0 0 23px tint($text-glow, 20%);
+        }
+
+    }
+
+    a {
+        @include adjust-font-size-to(18px);
+        transition: 0.6s;
+
+        &:hover {
+            @include adjust-font-size-to(19px);
+            color: $primary-text;
+            text-shadow: 1px 1px 3px $text-glow;
+        }
     }
 
 }

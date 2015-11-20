@@ -10,21 +10,25 @@ const DisplayResults = createClass({
 
     render() {
         const resultsList = this.props.results.map((result, index) => {
+            // My attempt at not using dangerouslysetHTML
             // let regex = /(?:<\/?span>?)\s?(?:class="searchmatch">)?/g;
             // let cleaned = result.snippet.replace(regex, '');
             // console.log(cleaned);
             const url = this.generateURL(result.title);
             return (
-                <li className="list-group-item" key={index}>
-                    <h3><a href={url} target="_blank">{result.title}</a></h3>
-                    {<p dangerouslySetInnerHTML={this.createMarkup(result.snippet)}></p>}
-                    {/*<p> {cleaned}</p>*/}
-                    <p>Number of words: {result.wordcount}</p>
-                </li>
+                <a href={url} target="_blank">
+                    <li className="list-group-item result" key={index}>
+                        <h3>{result.title}</h3>
+                        {<p dangerouslySetInnerHTML=
+                            {this.createMarkup(result.snippet)}></p>}
+                        {/*<p> {cleaned}</p>*/}
+                        <p>Number of words: {result.wordcount}</p>
+                    </li>
+                </a>
             );
         });
         return (
-            <ul className="list-group">
+            <ul className="list-group results-wrapper">
                 {resultsList}
             </ul>
         );

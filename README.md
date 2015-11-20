@@ -15,5 +15,7 @@ If working with CSS and Sass then run in two terminals
 npm run launch
 // other terminal
 npm run build
+// other terminal
+gulp
 ```
 This has a nodmon server that will reload and I will set up a gulpfile at some point to handle a livereload of the webpage itself.

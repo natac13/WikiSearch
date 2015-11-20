@@ -48,10 +48,10 @@ gulp.task('css', function() {
 });
 
 gulp.task('watch', function() {
-    livereload.listen();
     gulp.watch(paths.allscss, ['css']);
     // thought this would refresh the page with nodemon
     // gulp.watch(paths.assets, ['css']);
+    livereload.listen();
 });
 
 gulp.task('default', ['clean','css', 'watch']);
