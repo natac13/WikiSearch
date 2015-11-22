@@ -16,14 +16,14 @@ const Search = createClass({
     },
 
     handleInput(input) {
-        console.log(`the input is ${input}`);
+        // console.log(`the input is ${input}`);
         this.setState({
             input: input
         });
 
         getResultsWiki(input)
             .then(({ results }) => {
-                console.log(`results from search.js: ${JSON.stringify(results, null, 4)}`);
+                // console.log(`results from search.js: ${JSON.stringify(results, null, 4)}`);
 
                 /*** there is an error property on the results object if there is no search param
                 in the query for the URL ***/

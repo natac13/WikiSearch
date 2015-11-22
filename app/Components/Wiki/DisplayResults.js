@@ -16,8 +16,8 @@ const DisplayResults = createClass({
             // console.log(cleaned);
             const url = this.generateURL(result.title);
             return (
-                <a href={url} target="_blank">
-                    <li className="list-group-item result" key={index}>
+                <a href={url} target="_blank" key={index}>
+                    <li className="list-group-item result" >
                         <h3>{result.title}</h3>
                         {<p dangerouslySetInnerHTML=
                             {this.createMarkup(result.snippet)}></p>}

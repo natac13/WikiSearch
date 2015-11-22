@@ -29600,10 +29600,6 @@
 	    value: true
 	});
 	
-	var _stringify = __webpack_require__(401);
-	
-	var _stringify2 = _interopRequireDefault(_stringify);
-	
 	var _react = __webpack_require__(192);
 	
 	var _react2 = _interopRequireDefault(_react);
@@ -29632,7 +29628,7 @@
 	    handleInput: function handleInput(input) {
 	        var _this = this;
 	
-	        console.log('the input is ' + input);
+	        // console.log(`the input is ${input}`);
 	        this.setState({
 	            input: input
 	        });
@@ -29640,7 +29636,7 @@
 	        (0, _wikiHelper2.default)(input).then(function (_ref) {
 	            var results = _ref.results;
 	
-	            console.log('results from search.js: ' + (0, _stringify2.default)(results, null, 4));
+	            // console.log(`results from search.js: ${JSON.stringify(results, null, 4)}`);
 	
 	            /*** there is an error property on the results object if there is no search param
 	            in the query for the URL ***/
@@ -29680,28 +29676,9 @@
 	exports.default = Search;
 
 /***/ },
-/* 401 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = { "default": __webpack_require__(402), __esModule: true };
-
-/***/ },
-/* 402 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var core = __webpack_require__(403);
-	module.exports = function stringify(it){ // eslint-disable-line no-unused-vars
-	  return (core.JSON && core.JSON.stringify || JSON.stringify).apply(JSON, arguments);
-	};
-
-/***/ },
-/* 403 */
-/***/ function(module, exports) {
-
-	var core = module.exports = {version: '1.2.6'};
-	if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
-
-/***/ },
+/* 401 */,
+/* 402 */,
+/* 403 */,
 /* 404 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -29783,10 +29760,10 @@
 	            var url = _this.generateURL(result.title);
 	            return _react2.default.createElement(
 	                'a',
-	                { href: url, target: '_blank' },
+	                { href: url, target: '_blank', key: index },
 	                _react2.default.createElement(
 	                    'li',
-	                    { className: 'list-group-item result', key: index },
+	                    { className: 'list-group-item result' },
 	                    _react2.default.createElement(
 	                        'h3',
 	                        null,
@@ -29829,7 +29806,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var getResultsWiki = function getResultsWiki(input) {
-	    return (0, _jsonpP2.default)('https://en.wikipedia.org/w/api.php?action=query&list=search&format=json&srlimit=13&srwhat=text&srinfo=suggestion&srsearch=' + input + '&callback=JSON_CALLBACK').then(function handleSuccess(response) {
+	    return (0, _jsonpP2.default)('https://en.wikipedia.org/w/api.php?action=query&list=search&format=json&srlimit=13&srwhat=text&srinfo=suggestion&srsearch=' + input).then(function handleSuccess(response) {
 	        if (response) {
 	            return { results: response };
 	        }
